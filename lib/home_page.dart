@@ -18,13 +18,40 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
+        actions: [
+          CustomSwitch(),
+        ],
       ),
-      body: Center(
-        child: Switch(
-          value: AppController.instance.isDarktheme,
-          onChanged: (value) {
-            AppController.instance.changeTheme();
-          },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Contador $counter"),
+            CustomSwitch(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.black,
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.black,
+                ),
+                Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.black,
+                )
+              ],
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -35,6 +62,20 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
+    );
+  }
+}
+
+class CustomSwitch extends StatelessWidget {
+  const CustomSwitch({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: AppController.instance.isDarktheme,
+      onChanged: (value) {
+        AppController.instance.changeTheme();
+      },
     );
   }
 }
